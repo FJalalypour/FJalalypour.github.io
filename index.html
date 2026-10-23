@@ -1,0 +1,828 @@
+<title>Farzaneh Jalalypour</title>
+<meta name="description" content="Farzaneh Jalalypour: computational biochemistry, molecular simulation and AI for drug discovery. Chalmers University of Technology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Layout: academicpages-style — sticky profile sidebar on the left, one content column, tabbed sections via #hash */
+  :root {
+    --bg: #FBFAFD;
+    --surface: #FFFFFF;
+    --ink: #221B33;
+    --muted: #625A75;
+    --line: #E6E1F0;
+    --paper: #F3F0F8;
+    --teal: #6B3FA0;
+    --teal-soft: rgba(107,63,160,0.10);
+    --violet: #B4458C;
+    --violet-soft: rgba(180,69,140,0.10);
+    --display: "Newsreader", Georgia, "Times New Roman", serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #15111F; --surface: #1E1830; --ink: #EEEAF6; --muted: #A9A1BE; --line: #322A47; --paper: #2A2340;
+    --teal: #B99CFF; --teal-soft: rgba(185,156,255,0.14); --violet: #F0A6D2; --violet-soft: rgba(240,166,210,0.14);
+    color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --bg: #15111F; --surface: #1E1830; --ink: #EEEAF6; --muted: #A9A1BE; --line: #322A47; --paper: #2A2340;
+    --teal: #B99CFF; --teal-soft: rgba(185,156,255,0.14); --violet: #F0A6D2; --violet-soft: rgba(240,166,210,0.14);
+    color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+  a { color: var(--teal); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+  /* Masthead */
+  .masthead { border-top: 3px solid var(--teal); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .masthead .in { max-width: 1180px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; gap: 24px; min-height: 60px; flex-wrap: wrap; }
+  .site-title { font-family: var(--display); font-weight: 600; font-size: 1.25rem; color: var(--ink); text-decoration: none; margin-right: auto; }
+  .site-title span { color: var(--teal); }
+  .nav { display: flex; flex-wrap: wrap; gap: 2px 4px; list-style: none; margin: 0; padding: 0; }
+  .nav a { display: block; padding: 6px 10px; border-radius: 6px; color: var(--muted); text-decoration: none; font-size: 0.93rem; font-weight: 500; }
+  .nav a:hover { color: var(--ink); background: var(--teal-soft); }
+  .nav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--teal); border-radius: 0; }
+
+  /* Page frame */
+  .frame { max-width: 1180px; margin: 0 auto; padding: 32px 20px 64px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  @media (max-width: 860px) { .frame { gap: 24px; padding-top: 24px; } }
+
+  /* Sidebar */
+  .profile { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px 24px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+  .profile-info { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  @media (max-width: 600px) { .profile { grid-template-columns: 1fr; justify-items: start; gap: 16px; } }
+  .avatar { box-shadow: 0 0 0 4px var(--surface), 0 0 0 6px var(--teal); width: 170px; aspect-ratio: 1; max-width: 100%; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); display: block; background: var(--teal-soft); }
+  .avatar-fallback { box-shadow: 0 0 0 4px var(--surface), 0 0 0 6px var(--teal); width: 170px; aspect-ratio: 1; max-width: 100%; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 3rem; color: var(--teal); background: var(--teal-soft); border: 1px solid var(--line); }
+  .profile .avatar, .profile .avatar-fallback { width: 120px; }
+  @media (max-width: 860px) { .profile .avatar, .profile .avatar-fallback { width: 110px; font-size: 2rem; } }
+  .profile h2 { font-family: var(--display); font-size: 1.7rem; font-weight: 600; margin: 0; line-height: 1.2; }
+  .profile .bio { color: var(--muted); font-size: 0.92rem; margin: 4px 0 0; }
+  .links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.85rem; }
+  .profile .links li { gap: 6px; padding: 4px 11px 4px 9px; border-radius: 999px; background: var(--teal-soft); line-height: 1.3; }
+  .profile .links li svg { width: 14px; height: 14px; stroke: var(--teal); }
+  .profile .links li a { color: var(--ink); }
+  .profile .links li:has(a):hover { background: var(--violet-soft); }
+    .links li { display: flex; align-items: center; gap: 9px; color: var(--muted); min-width: 0; }
+  .links svg { width: 16px; height: 16px; flex-shrink: 0; fill: none; stroke: var(--muted); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .links a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .links a:hover { color: var(--teal); text-decoration: underline; }
+
+  /* Content */
+  main { min-width: 0; }
+  .page h1 { color: var(--ink); font-family: var(--display); font-weight: 600; font-size: clamp(1.5rem, 2.8vw, 1.95rem); line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 6px; text-wrap: balance; }
+  .page .lede { color: var(--muted); margin: 0 0 20px; }
+  .page .subtitle { margin: 0 0 16px; font-family: var(--display); font-size: clamp(1.05rem, 1.8vw, 1.25rem); font-weight: 500; color: var(--teal); }
+  .page h2 { font-family: var(--display); font-weight: 600; font-size: 1.4rem; margin: 28px 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--line); text-wrap: balance; }
+  .page h3 { font-size: 1rem; font-weight: 600; margin: 0; }
+  .prose p { margin: 0 0 14px; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  .intro-text h1 { text-wrap: wrap; max-width: none; }
+  .intro-text .prose p { max-width: none; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  .eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin: 0 0 8px; }
+
+  /* Research themes */
+  .themes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 8px; }
+  @media (max-width: 760px) { .themes { grid-template-columns: 1fr; } }
+  .theme { border-top: 2px solid var(--teal); padding-top: 12px; }
+  .theme:nth-child(2) { border-color: var(--violet); }
+  .theme:nth-child(3) { border-color: var(--ink); }
+  .theme p { color: var(--muted); font-size: 0.92rem; margin: 6px 0 0; }
+
+  /* News */
+  .news { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .news li { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; font-size: 0.95rem; }
+  .news time { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+
+  /* Metrics */
+  .metrics { display: flex; flex-wrap: wrap; gap: 10px 32px; margin: 0 0 8px; padding: 14px 0; border-block: 1px solid var(--line); }
+  .metric b { display: block; font-family: var(--display); font-size: 1.7rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .metric span { font-size: 0.82rem; color: var(--muted); }
+  .note { font-size: 0.82rem; color: var(--muted); margin: 6px 0 0; }
+
+  /* Publications */
+  .pubs { list-style: none; margin: 0; padding: 0; counter-reset: pub; display: grid; gap: 12px; }
+  .pub { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 12px; counter-increment: pub; }
+  .pub .yr::before { content: counter(pub) "."; display: inline-block; min-width: 2.2em; color: var(--teal); font-weight: 500; }
+  .pub .yr { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+  .pub .t { font-weight: 700; color: var(--ink); line-height: 1.4; }
+  .pub .a { color: var(--muted); font-size: 0.92rem; }
+  .pub .a strong { color: var(--ink); font-weight: 700; }
+  .pub .v { font-size: 0.92rem; font-style: italic; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 6px; font-size: 0.85rem; align-items: center; }
+  .tag { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.03em; padding: 2px 8px; border-radius: 4px; background: var(--teal-soft); color: var(--teal); }
+  .tag.v2 { background: var(--violet-soft); color: var(--violet); }
+  .cites { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+  .filters button { font: inherit; font-size: 0.85rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); cursor: pointer; }
+  .filters button[aria-pressed="true"] { border-color: var(--teal); color: var(--ink); background: var(--teal-soft); }
+
+  /* Talks & teaching lists */
+  .entries { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .entry { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; }
+  @media (max-width: 520px) { .entry, .pub { grid-template-columns: 1fr; gap: 2px; } }
+  .entry .when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+  .entry .where { color: var(--muted); font-size: 0.92rem; }
+  .entry p { margin: 2px 0 0; font-size: 0.93rem; }
+  .kind { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--violet); }
+
+  /* Portfolio */
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .card svg.fig { display: block; width: 100%; height: 132px; background: linear-gradient(135deg, var(--teal-soft), var(--violet-soft)); border-bottom: 1px solid var(--line); }
+  .card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .card .role { font-family: var(--mono); font-size: 0.75rem; color: var(--violet); text-transform: uppercase; letter-spacing: 0.05em; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+  .chips li { font-size: 0.78rem; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .card .lk { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.9rem; font-weight: 500; }
+  .soon { color: var(--muted); }
+  .s-a { stroke: var(--teal); } .f-a { fill: var(--teal); } .s-b { stroke: var(--violet); } .f-b { fill: var(--violet); }
+  .s-n { stroke: var(--ink); } .f-n { fill: var(--ink); } .f-at { fill: var(--teal-soft); } .f-bt { fill: var(--violet-soft); }
+  .f-s { fill: var(--surface); } .s-m { stroke: var(--muted); }
+  svg text { font-family: var(--body); }
+
+  /* CV */
+  .cv-row { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding: 8px 0; }
+  @media (max-width: 520px) { .cv-row { grid-template-columns: 1fr; gap: 0; } }
+  .cv-row .when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); padding-top: 2px; font-variant-numeric: tabular-nums; }
+  .cv-row .where { color: var(--muted); font-size: 0.92rem; }
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; }
+  @media (max-width: 640px) { .skills { grid-template-columns: 1fr; } }
+  .skills h3 { margin-bottom: 8px; }
+
+  /* Project cards copied from the industry page: map their fixed colours to the theme */
+  .card .links { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.9rem; font-weight: 500; }
+  .card .links a { text-decoration: none; }
+  .card .links a:hover { text-decoration: underline; }
+  .card h3 { font-size: 1.05rem; line-height: 1.35; }
+  .card svg.fig [fill="#5EE0D0"] { fill: var(--teal); } .card svg.fig [stroke="#5EE0D0"] { stroke: var(--teal); }
+  .card svg.fig [fill="#A78BFA"] { fill: var(--violet); } .card svg.fig [stroke="#A78BFA"] { stroke: var(--violet); }
+  .card svg.fig [fill="#EAF0F8"] { fill: var(--ink); } .card svg.fig [stroke="#EAF0F8"] { stroke: var(--ink); }
+  .card svg.fig [fill="#9AA8BD"] { fill: var(--muted); } .card svg.fig [stroke="#9AA8BD"] { stroke: var(--muted); }
+  .card svg.fig [fill="#1A263D"] { fill: var(--surface); }
+  .card svg.fig [fill^="rgba(94,224,208"] { fill: var(--teal-soft); }
+  .card svg.fig [fill^="rgba(167,139,250"] { fill: var(--violet-soft); }
+  .card svg.fig [fill="rgba(255,255,255,0.06)"], .card svg.fig [fill="rgba(255,255,255,0.04)"] { fill: var(--surface); }
+  /* Certificates (from the industry page, compact) */
+  .certs .cert-group { font-family: var(--mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .certs .verified-row + .cert-group { margin-top: 18px; }
+  .verified-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+  .vcert { display: flex; align-items: center; gap: 12px; padding: 6px 12px 6px 8px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
+  .vcert > div { min-width: 0; line-height: 1.3; }
+  .vcert br { display: none; }
+  .vcert img { height: 56px; width: auto; flex-shrink: 0; }
+  .vcert h3 { font-size: 0.9rem; margin: 0; }
+  .vcert p { margin: 0; color: var(--muted); font-size: 0.78rem; }
+  .vtag { display: inline-block; padding: 0 6px; border-radius: 999px; background: var(--teal-soft); color: var(--teal); font-family: var(--mono); font-size: 0.64rem; font-weight: 500; letter-spacing: 0.04em; margin-right: 8px; }
+  .vcert a, .ctile a { font-weight: 500; text-decoration: none; font-size: 0.78rem; }
+  .vcert a:hover, .ctile a:hover { text-decoration: underline; }
+  .courses { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 760px) { .courses { grid-template-columns: 1fr; } }
+  .ctile { display: grid; grid-template-columns: 48px minmax(0, 1fr); column-gap: 10px; align-items: center; padding: 6px 10px 6px 8px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line); min-width: 0; line-height: 1.3; }
+  .ctile .art { grid-row: 1 / span 3; width: 48px; height: 48px; display: grid; place-items: center; }
+  .ctile .art img { max-height: 48px; max-width: 48px; }
+  .ctile h3 { font-size: 0.8rem; line-height: 1.25; margin: 0; }
+  .ctile p { margin: 0; color: var(--muted); font-size: 0.72rem; }
+  .medal { width: 44px; height: 44px; border-radius: 50%; padding: 3px; background: conic-gradient(from 200deg, var(--teal), var(--violet), var(--teal)); }
+  .medal .face { width: 100%; height: 100%; border-radius: 50%; display: grid; place-content: center; background: var(--surface); }
+  .medal .abbr { font-family: var(--display); font-weight: 600; font-size: 0.66rem; line-height: 1; color: var(--teal); }
+  .medal .org { display: none; }
+  .compact { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 0.93rem; }
+  .compact li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; line-height: 1.45; }
+  .compact .when { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); padding-top: 1px; font-variant-numeric: tabular-nums; }
+  .compact b { font-weight: 600; }
+  .compact .sep { color: var(--muted); }
+  @media (max-width: 520px) { .compact li { grid-template-columns: 1fr; gap: 0; margin-bottom: 6px; } }
+  .certdocs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 4px; }
+  @media (max-width: 900px) { .certdocs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .certdocs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .certdoc { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; transition: border-color .2s, transform .2s; }
+  .certdoc:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .certdoc .thumb { display: grid; place-items: center; height: 150px; padding: 8px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .certdoc img { max-height: 134px; max-width: 100%; object-fit: contain; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+  .certdoc .cap { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; font-size: 0.76rem; line-height: 1.3; }
+  .certdoc .cap b { font-weight: 600; }
+  .certdoc .cap span { color: var(--muted); font-size: 0.7rem; }
+  @media (prefers-reduced-motion: reduce) { .certdoc { transition: none; } }
+  .intro { display: block; }
+  .intro-text { min-width: 0; }
+  .intro-movie { float: right; width: 250px; margin: 4px 0 12px 36px; }
+  .intro-movie .movie { position: relative; width: 100%; aspect-ratio: 1; }
+  .intro-movie .movie + figcaption + .movie { margin-top: 14px; }
+  .intro-movie img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+  .intro-movie figcaption { margin-top: 6px; font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+  .page h2 { display: flow-root; }
+  @media (max-width: 760px) { .intro { display: flex; flex-direction: column; } .intro-movie { order: 2; margin-top: 4px !important; } }
+  @media (max-width: 760px) { .intro-movie { float: none; width: 100%; max-width: 460px; margin: 0 0 20px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; grid-auto-flow: column; column-gap: 14px; } .intro-movie .movie + figcaption + .movie { margin-top: 0; } }
+  /* Education road: a horizontal road from PhD (left) back to BSc (right) */
+  .road-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .road { list-style: none; margin: 4px 0 0; padding: 0; position: relative; display: grid; grid-template-columns: repeat(3, minmax(190px, 1fr)); gap: 16px; min-width: 600px; }
+  .road::before { content: ""; position: absolute; left: 8%; right: 8%; top: 19px; height: 14px; border-radius: 7px;
+    background: linear-gradient(90deg, var(--teal), var(--violet)); opacity: 0.9; }
+  .road::after { content: ""; position: absolute; left: 9%; right: 9%; top: 25px; height: 2px;
+    background: repeating-linear-gradient(90deg, var(--surface) 0 12px, transparent 12px 24px); }
+  .stop { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+  .milestone { position: relative; z-index: 1; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0;
+    background: var(--surface); border: 3px solid var(--teal); color: var(--teal); font-family: var(--mono); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.02em; }
+  .stop.now .milestone { background: var(--teal); color: var(--surface); box-shadow: 0 0 0 5px var(--teal-soft); }
+  .stop.start .milestone { border-color: var(--violet); color: var(--violet); }
+  .leg { min-width: 0; width: 100%; flex: 1; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-align: center; }
+  .leg h3 { font-size: 0.95rem; line-height: 1.3; }
+  .leg .years { display: block; font-family: var(--mono); font-size: 0.74rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-bottom: 4px; }
+  .leg .where { color: var(--muted); font-size: 0.84rem; margin-top: 2px; }
+  .leg p { margin: 6px 0 0; font-size: 0.82rem; line-height: 1.45; }
+  .contact { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; margin: 0; font-size: 0.92rem; line-height: 1.5; }
+  .contact dt { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-top: 3px; }
+  .contact dd { margin: 0; min-width: 0; overflow-wrap: anywhere; color: var(--ink); }
+  .contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--teal-soft); }
+  .contact a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+  .contact .sep { color: var(--muted); margin: 0 8px; }
+  @media (max-width: 520px) { .contact { grid-template-columns: 1fr; gap: 0; } .contact dd { margin-bottom: 6px; } }
+  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
+  footer .in { max-width: 1180px; margin: 0 auto; padding: 18px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<header class="masthead">
+  <div class="in">
+    <a class="site-title" href="#about" aria-label="Farzaneh Jalalypour, home">FJ<span>.</span></a>
+    <ul class="nav" id="nav">
+      <li><a href="#about">About</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certificates">Training</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#talks">Presentations</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="frame">
+  <aside class="profile" aria-label="Profile">
+    <!-- Put your photo in the repository as Fj.jpg (or change src). Initials show if the image is missing. -->
+    <img class="avatar" src="Fj.jpg" alt="Farzaneh Jalalypour" onerror="this.outerHTML='<div class=&quot;avatar-fallback&quot; aria-hidden=&quot;true&quot;>FJ</div>'">
+    <div class="profile-info">
+      <h2>Farzaneh Jalalypour</h2>
+    <dl class="contact">
+      <dd>Chalmers University of Technology, Gothenburg, SE</dd>
+      <dd><a href="mailto:farjal@chalmers.se">farjal@chalmers.se</a><span class="sep">·</span><a href="mailto:farjal2025@gmail.com">farjal2025@gmail.com</a></dd>
+      <dd><a href="https://scholar.google.com/citations?user=Fu0HhBEAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a><span class="sep">·</span><a href="https://github.com/FJalalypour" target="_blank" rel="noopener noreferrer">GitHub</a><span class="sep">·</span><a href="https://www.linkedin.com/in/farzaneh-jalalypour-87a903145" target="_blank" rel="noopener noreferrer">LinkedIn</a><span class="sep">·</span><a href="https://www.kaggle.com/cocojp" target="_blank" rel="noopener noreferrer">Kaggle</a></dd>
+    </dl>
+    </div>
+  </aside>
+
+  <main lang="en">
+    <section class="page" id="about" data-page>
+      <div class="intro">
+        <figure class="intro-movie">
+          <div class="movie"><picture><source srcset="videos/protac-chloroform-still.png" media="(prefers-reduced-motion: reduce)"><img src="videos/protac-chloroform.webp" alt="Molecular dynamics movie of a PROTAC changing shape in chloroform" loading="eager" decoding="async"></picture></div>
+          <figcaption>A PROTAC changing shape in chloroform, from my molecular dynamics simulations of PROTAC chameleonicity.</figcaption>
+          <div class="movie"><picture><source srcset="videos/calmodulin-closing-still.png" media="(prefers-reduced-motion: reduce)"><img src="videos/calmodulin-closing.webp" alt="Movie of calmodulin closing along a collective variable found with the Perturb–Scan–Pull method" loading="eager" decoding="async"></picture></div>
+          <figcaption>Calmodulin closing, steered along a collective variable found with my Perturb–Scan–Pull (PSP) method.</figcaption>
+        </figure>
+        <div class="intro-text" lang="en">
+      <p class="eyebrow">About me</p>
+      <h1>Computational biochemist and molecular modeller working on AI for the life sciences</h1>
+      <div class="prose">
+        <p>I'm <strong>Farzaneh Jalalypour</strong>, a researcher working at the interface of experimental molecular biology, computational chemistry and artificial intelligence. I study biological systems at the molecular level to understand how proteins function, how they change shape, and how mutations alter their behaviour. Alongside molecular simulation, I apply AI across the life sciences, from predicting protein structures and complexes to building literature-derived databases with language models and supporting the design of clinical trials.</p>
+        <p>My work combines method development with applied studies. I developed the Perturb–Scan–Pull approach for driving conformational change and use network and clustering analyses to map protein dynamics. In parallel, I contribute to drug design projects, characterising allosteric lipid binding sites in ion channels, targeting oncogenic RAS signalling, and modelling PROTAC-mediated ternary complexes with generative AI. From 2021 to 2024 I was a member of the GROMACS open-source software team and the BioExcel Center of Excellence at KTH, where I supported the user community, wrote official tutorials and tested new releases. I am currently a WASP Postdoctoral Researcher and Lecturer in the Data Science and AI division at Chalmers University of Technology.</p>
+      </div>
+        </div>
+      </div>
+
+      <h2>Where I'm heading</h2>
+      <p style="margin:0">I am currently looking for research positions.</p>
+
+      <h2 style="clear: both">Research experience</h2>
+      <ul class="entries">
+        <li class="entry"><span class="when">2024–present</span><div><h3>WASP Postdoctoral Researcher and Lecturer</h3><div class="where">AI Laboratory for Molecular Engineering (AIME), Data Science and AI division, Department of Computer Science and Engineering, Chalmers University of Technology, SE · supervisor: Asst. Prof. Rocío Mercado</div><p>Generative AI, molecular simulation and machine learning for targeted protein degradation; LLM-assisted literature extraction; teaching data science and AI at bachelor's and master's level.</p></div></li>
+        <li class="entry"><span class="when">Nov 2024</span><div><h3>Visiting Researcher</h3><div class="where">Centre Blaise Pascal de Simulation et de Modélisation Numérique (CBPsmn), École normale supérieure de Lyon, FR · host: Prof. Paulo Cesar Telles de Souza</div><p>Coarse-grained and all-atom simulations of PROTAC-mediated degradation.</p></div></li>
+        <li class="entry"><span class="when">2021–2024</span><div><h3>Postdoctoral Researcher</h3><div class="where">Molecular Biophysics Stockholm, Department of Applied Physics, Science for Life Laboratory (SciLifeLab) and KTH Royal Institute of Technology, SE · supervisor: Prof. Erik Lindahl</div><p>Molecular simulations of lipid binding in ligand-gated ion channels; member of the GROMACS open-source and BioExcel teams.</p></div></li>
+        <li class="entry"><span class="when">Feb–Mar 2020</span><div><h3>Research Internship (HPC-Europa3 grant)</h3><div class="where">PDC Center for High Performance Computing, KTH Royal Institute of Technology, SE</div><p>Fully funded short research visit through the HPC-Europa3 Transnational Access Programme, running large-scale molecular simulations on PDC supercomputers during my PhD.</p></div></li>
+        <li class="entry"><span class="when">2010–2016</span><div><h3>Research Assistant</h3><div class="where">Molecular Biology Wet Lab, Tabriz University of Medical Sciences, IR</div><p>Antibody engineering, cloning and protein expression, and molecular diagnostics.</p></div></li>
+      </ul>
+
+      <h2>Education</h2>
+      <div class="road-scroll"><ol class="road" aria-label="Education, from PhD back to bachelor's">
+        <li class="stop now">
+          <span class="milestone" aria-hidden="true">PhD</span>
+          <div class="leg">
+            <span class="years">2017–2021</span>
+            <h3>PhD, Molecular Biology, Genetics and Bioengineering (Computational Biochemistry)</h3>
+            <div class="where">Molecular Modeling and Simulation Lab, Sabancı University, TR</div>
+            <p>Thesis: Developing new applications for perturbation response scanning method to study conformational modulation of globular proteins.</p>
+          </div>
+        </li>
+        <li class="stop">
+          <span class="milestone" aria-hidden="true">MSc</span>
+          <div class="leg">
+            <span class="years">2010–2013</span>
+            <h3>MSc, Cellular and Molecular Biology</h3>
+            <div class="where">Azarbaijan Shahid Madani University and Tabriz University of Medical Sciences, IR</div>
+            <p>Thesis: Cloning and expression of the variable regions of anti-EGFR monoclonal antibody in <em>E. coli</em> for production of a single chain antibody.</p>
+          </div>
+        </li>
+        <li class="stop start">
+          <span class="milestone" aria-hidden="true">BSc</span>
+          <div class="leg">
+            <span class="years">2005–2009</span>
+            <h3>BSc, Molecular and Cellular Biology – Genetics</h3>
+            <div class="where">University of Isfahan, IR</div>
+            <p>Thesis: Exploring genetic factors underlying autism spectrum phenotypes.</p>
+          </div>
+        </li>
+      </ol></div>
+
+      <h2>Supervision experience</h2>
+      <ul class="entries">
+        <li class="entry"><span class="when">2025–2026</span><div><span class="kind">MSc thesis · industry</span><h3>AI-powered recommender system for clinical trial protocol design</h3><div class="where">Chalmers University of Technology, SE · with AstraZeneca and Evinova</div></div></li>
+        <li class="entry"><span class="when">2025</span><div><span class="kind">MSc internship</span><h3>A machine learning perturbation–clustering framework for conformational space exploration</h3><div class="where">Chalmers University of Technology, SE</div></div></li>
+        <li class="entry"><span class="when">2024–2025</span><div><span class="kind">MSc thesis</span><h3>Predicting PROTAC-mediated ternary complexes with AlphaFold3 and Boltz-1</h3><div class="where">Chalmers University of Technology, SE · published in Digital Discovery</div></div></li>
+        <li class="entry"><span class="when">2018–2019</span><div><span class="kind">Undergraduate research</span><h3>Allosteric modulation of protein dynamics with perturbation response scanning</h3><div class="where">Sabancı University, TR</div></div></li>
+        <li class="entry"><span class="when">2018–2019</span><div><span class="kind">Project course</span><h3>PROJ 201 student projects</h3><div class="where">Sabancı University, TR</div></div></li>
+      </ul>
+
+      <h2 id="teaching" style="scroll-margin-top:84px">Teaching experience</h2>
+      <ul class="entries">
+        <li class="entry"><span class="when">2024–present</span><div><span class="kind">Lecturer · Bachelor's level</span><h3>Introduction to Data Science and AI (DAT565/DIT407)</h3><div class="where">Chalmers University of Technology, SE · about 250 students per study period</div><p>Redesigned modules 2 and 4 with new lectures, tutorials and code examples; designed a module and its written exam. Covers the data science process in Python, regression, classification, clustering and AI ethics.</p></div></li>
+        <li class="entry"><span class="when">Feb 2026</span><div><span class="kind">Lecturer · Master's level</span><h3>Design of AI Systems (DAT410) — module "AI in Health and Medicine"</h3><div class="where">Chalmers University of Technology, SE · about 100 students</div><p>A new module on protein structure prediction (AlphaFold), clinical-trial recommendation and generative molecular design (REINVENT), with attention to data quality, validity, ethics and limitations.</p></div></li>
+        <li class="entry"><span class="when">2023</span><div><span class="kind">Workshop trainer · PhD and researcher level</span><h3>GROMACS molecular dynamics simulation</h3><div class="where">BioExcel, KTH Royal Institute of Technology, SE</div></div></li>
+        <li class="entry"><span class="when">2018–2020</span><div><span class="kind">Teaching assistant · Master's and PhD level</span><h3>Scientific and Technical Communication (GR 555E)</h3><div class="where">Sabancı University, TR · advised more than 200 graduate students on writing and presenting</div></div></li>
+        <li class="entry"><span class="when">2017–2018</span><div><span class="kind">Teaching assistant · Bachelor's level</span><h3>Linear Algebra (MATH 101)</h3><div class="where">Sabancı University, TR</div></div></li>
+        <li class="entry"><span class="when">2010–2014</span><div><span class="kind">Lecturer</span><h3>Molecular biology laboratory methods; biology team leader</h3><div class="where">Tabriz University of Medical Sciences and University of Tabriz, IR</div></div></li>
+      </ul>
+
+      <h2>Pedagogical training and development</h2>
+      <ul class="entries">
+        <li class="entry"><span class="when">2026</span><div><h3>University Teaching and Learning (CLS926, 3 hp)</h3><div class="where">Chalmers University of Technology, SE</div></div></li>
+        <li class="entry"><span class="when">2026</span><div><h3>Diversity and Inclusion for Learning in Higher Education (CLS930, 2 hp)</h3><div class="where">Chalmers University of Technology, SE</div></div></li>
+        <li class="entry"><span class="when">2024–2026</span><div><span class="kind">Course development</span><h3>New module "AI in Health and Medicine"; redesign of modules 2 and 4 in DAT565</h3><div class="where">Updated lectures, tutorials, examples and learning activities for interdisciplinary student groups</div></div></li>
+        <li class="entry"><span class="when">2025</span><div><h3>Women's Leadership Program (40 hours)</h3><div class="where">Lauri.co and GENIE, Chalmers University of Technology, SE</div></div></li>
+        <li class="entry"><span class="when">2024</span><div><span class="kind">Teaching material</span><h3><a href="https://tutorials.gromacs.org/docs/membrane-protein.html" target="_blank" rel="noopener noreferrer">A beginner's guide to MD simulation of a membrane protein using GROMACS</a></h3><div class="where">Official GROMACS tutorial; ongoing contribution to the GROMACS Tutorial Suite</div></div></li>
+        <li class="entry"><span class="when">Spring 2018</span><div><span class="kind">Sabancı University</span><h3>Academic Practices and Development 3 (GR 503E)</h3><p>Teaching observed by a supervisor at least once per semester, with feedback on teaching performance and further professional development activities.</p></div></li>
+        <li class="entry"><span class="when">Fall 2017</span><div><span class="kind">Sabancı University</span><h3>Academic Practices and Development 2 (GR 502E)</h3><p>Reflection on the first semester of teaching, course planning, teaching with technology and grading, with continued teaching assistance in a university course.</p></div></li>
+        <li class="entry"><span class="when">Spring 2017</span><div><span class="kind">Sabancı University</span><h3>Academic Practices and Development 1 (GR 501E)</h3><p>Workshops on the principles of teaching and learning in higher education, best practices and ethics in teaching, and research methods, followed by assisting in a university course to apply them.</p></div></li>
+      </ul>
+
+      <h2 id="projects" style="scroll-margin-top:84px">Projects</h2>
+      <p class="lede">Applied AI with real clinical data, plus machine learning models built from scratch.</p>
+      <div class="grid">
+
+        <article class="card">
+          <svg class="fig" viewBox="0 40 360 150" role="img" aria-label="A regression line through points and a sigmoid curve separating two classes">
+            <g fill="#EAF0F8" opacity="0.8">
+              <circle cx="30" cy="160" r="4"/><circle cx="46" cy="146" r="4"/><circle cx="58" cy="152" r="4"/>
+              <circle cx="74" cy="132" r="4"/><circle cx="88" cy="136" r="4"/><circle cx="102" cy="116" r="4"/>
+              <circle cx="118" cy="120" r="4"/><circle cx="132" cy="100" r="4"/><circle cx="148" cy="96" r="4"/>
+            </g>
+            <line x1="22" y1="164" x2="158" y2="88" stroke="#5EE0D0" stroke-width="4" stroke-linecap="round"/>
+            <line x1="180" y1="70" x2="180" y2="170" stroke="#9AA8BD" stroke-opacity="0.3"/>
+            <g fill="#EAF0F8" opacity="0.8">
+              <circle cx="206" cy="158" r="4"/><circle cx="224" cy="158" r="4"/><circle cx="242" cy="158" r="4"/><circle cx="262" cy="158" r="4"/>
+            </g>
+            <g fill="none" stroke="#A78BFA" stroke-width="2.2">
+              <circle cx="276" cy="76" r="4"/><circle cx="300" cy="76" r="4"/><circle cx="320" cy="76" r="4"/><circle cx="340" cy="76" r="4"/>
+            </g>
+            <path d="M198 158 C 250 158, 258 154, 272 118 S 300 76, 346 76" fill="none" stroke="#5EE0D0" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <div class="body">
+            <p class="role">Chalmers University of Technology · 2024–2026</p>
+            <h3>Introduction to Data Science and AI</h3>
+            <p>Course covering the data science process in Python, core methods like regression, classification and clustering, classical AI and machine learning, and AI ethics.</p>
+            <p><strong style="color:var(--ink)">Lecturer</strong></p>
+            <ul class="chips"><li>Python</li><li>Regression</li><li>Classification</li><li>Clustering</li></ul>
+            <div class="links">
+              <a href="https://kursplaner.gu.se/pdf/kurs/en/DIT407.pdf" target="_blank" rel="noopener noreferrer">Read more</a>
+              <span style="color:var(--muted); font-weight:600">Course material belongs to Chalmers</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <svg class="fig" viewBox="0 40 360 150" role="img" aria-label="Two-stage pipeline: clinical trial protocols go to Stage 1 cluster prediction, then Stage 2 endpoint ranking">
+            <g font-family="DM Sans, Segoe UI, sans-serif" font-size="11" text-anchor="middle">
+              <rect x="22" y="78" width="88" height="74" rx="10" fill="rgba(255,255,255,0.06)" stroke="#9AA8BD" stroke-opacity="0.5"/>
+              <rect x="36" y="92" width="60" height="6" rx="3" fill="#EAF0F8" opacity="0.7"/>
+              <rect x="36" y="104" width="46" height="6" rx="3" fill="#EAF0F8" opacity="0.45"/>
+              <rect x="36" y="116" width="54" height="6" rx="3" fill="#EAF0F8" opacity="0.45"/>
+              <text x="66" y="140" fill="#EAF0F8">Trial protocols</text>
+              <path d="M112 115 H136" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#ar)"/>
+              <rect x="140" y="70" width="90" height="90" rx="12" fill="rgba(94,224,208,0.14)" stroke="#5EE0D0"/>
+              <circle cx="168" cy="102" r="9" fill="#5EE0D0" opacity="0.8"/><circle cx="194" cy="96" r="6" fill="#5EE0D0" opacity="0.5"/><circle cx="202" cy="116" r="8" fill="#5EE0D0" opacity="0.65"/>
+              <text x="185" y="142" fill="#EAF0F8">Stage 1</text><text x="185" y="155" fill="#9AA8BD" font-size="9.5">endpoint clusters</text>
+              <path d="M232 115 H256" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#ar2)"/>
+              <rect x="260" y="70" width="84" height="90" rx="12" fill="rgba(167,139,250,0.15)" stroke="#A78BFA"/>
+              <rect x="274" y="86" width="56" height="7" rx="3.5" fill="#A78BFA"/>
+              <rect x="274" y="99" width="44" height="7" rx="3.5" fill="#A78BFA" opacity="0.7"/>
+              <rect x="274" y="112" width="32" height="7" rx="3.5" fill="#A78BFA" opacity="0.45"/>
+              <text x="302" y="142" fill="#EAF0F8">Stage 2</text><text x="302" y="155" fill="#9AA8BD" font-size="9.5">ranked endpoints</text>
+            </g>
+            <defs>
+              <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5EE0D0"/></marker>
+              <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A78BFA"/></marker>
+            </defs>
+          </svg>
+          <div class="body">
+            <p class="role">With AstraZeneca and Evinova</p>
+            <h3>AI-powered recommender system for clinical trial protocol design</h3>
+            <p>Recommends secondary endpoints for heart failure trial protocols, learned from past trials.</p>
+            <p><strong style="color:var(--ink)">Supervisor</strong></p>
+            <ul class="chips"><li>NLP</li><li>Embeddings</li><li>XGBoost</li><li>Clinical data</li></ul>
+            <div class="links">
+              <a href="https://odr.chalmers.se/items/9ae973e1-05e1-4bcb-b410-3121aa00ff3a" target="_blank" rel="noopener noreferrer">Read more</a>
+              <a href="https://github.com/ChalmersKhatiri/thesis-data-and-code" target="_blank" rel="noopener noreferrer">View code on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <svg class="fig" viewBox="0 40 360 150" role="img" aria-label="A PROTAC ternary complex is predicted by AlphaFold3 and Boltz-1, and the predictions are compared">
+            <g font-family="DM Sans, Segoe UI, sans-serif" font-size="11" text-anchor="middle">
+              <circle cx="44" cy="102" r="20" fill="rgba(94,224,208,0.35)" stroke="#5EE0D0"/>
+              <circle cx="78" cy="128" r="16" fill="rgba(167,139,250,0.35)" stroke="#A78BFA"/>
+              <path d="M58 114 q6 2 8 6" stroke="#EAF0F8" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <text x="60" y="168" fill="#EAF0F8">Ternary complex</text>
+              <path d="M102 110 L136 88" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#ar5)"/>
+              <path d="M102 120 L136 142" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#ar5)"/>
+              <rect x="140" y="66" width="96" height="40" rx="10" fill="rgba(94,224,208,0.14)" stroke="#5EE0D0"/>
+              <text x="188" y="90" fill="#EAF0F8" font-weight="700">AlphaFold3</text>
+              <rect x="140" y="124" width="96" height="40" rx="10" fill="rgba(167,139,250,0.15)" stroke="#A78BFA"/>
+              <text x="188" y="148" fill="#EAF0F8" font-weight="700">Boltz-1</text>
+              <path d="M240 86 L272 108" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#ar6)"/>
+              <path d="M240 144 L272 122" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#ar6)"/>
+              <circle cx="304" cy="115" r="26" fill="rgba(255,255,255,0.06)" stroke="#9AA8BD" stroke-opacity="0.6"/>
+              <path d="M292 115 l8 8 l15 -16" stroke="#5EE0D0" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="304" y="160" fill="#EAF0F8">Compare</text>
+            </g>
+            <defs>
+              <marker id="ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5EE0D0"/></marker>
+              <marker id="ar6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A78BFA"/></marker>
+            </defs>
+          </svg>
+          <div class="body">
+            <p class="role">Digital Discovery · 2025</p>
+            <h3>Predicting protein complexes with generative AI tools</h3>
+            <p>Benchmarked AlphaFold3 and Boltz-1 on 62 PROTAC ternary complexes from the Protein Data Bank.</p>
+            <p><strong style="color:var(--ink)">Supervisor and collaborator</strong></p>
+            <ul class="chips"><li>Generative AI</li><li>AlphaFold3</li><li>Boltz-1</li><li>Model evaluation</li><li>RDKit</li></ul>
+            <div class="links">
+              <a href="https://pubs.rsc.org/dd/article/4/12/3782/889147/Predicting-PROTAC-mediated-ternary-complexes-with" target="_blank" rel="noopener noreferrer">Read more</a>
+              <a href="https://github.com/NilsDunlop/PROTACFold" target="_blank" rel="noopener noreferrer">View code on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <svg class="fig" viewBox="0 40 360 150" role="img" aria-label="Protein movement vectors grouped into three clusters">
+            <ellipse cx="80" cy="113" rx="48" ry="42" fill="rgba(94,224,208,0.10)" stroke="#5EE0D0" stroke-dasharray="4 5" stroke-opacity="0.7"/>
+            <ellipse cx="180" cy="113" rx="48" ry="42" fill="rgba(167,139,250,0.10)" stroke="#A78BFA" stroke-dasharray="4 5" stroke-opacity="0.7"/>
+            <ellipse cx="280" cy="113" rx="48" ry="42" fill="rgba(255,255,255,0.04)" stroke="#EAF0F8" stroke-dasharray="4 5" stroke-opacity="0.4"/>
+            <g stroke-linecap="round">
+              <line x1="56" y1="96" x2="68" y2="82" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#av)"/>
+              <line x1="86" y1="90" x2="101" y2="80" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#av)"/>
+              <line x1="70" y1="116" x2="83" y2="103" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#av)"/>
+              <line x1="100" y1="112" x2="116" y2="104" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#av)"/>
+              <line x1="58" y1="132" x2="73" y2="122" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#av)"/>
+              <line x1="90" y1="134" x2="102" y2="121" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#av)"/>
+              <line x1="156" y1="96" x2="174" y2="98" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#bv)"/>
+              <line x1="186" y1="90" x2="203" y2="97" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#bv)"/>
+              <line x1="170" y1="116" x2="188" y2="119" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#bv)"/>
+              <line x1="200" y1="112" x2="216" y2="120" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#bv)"/>
+              <line x1="158" y1="132" x2="175" y2="138" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#bv)"/>
+              <line x1="190" y1="134" x2="208" y2="136" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#bv)"/>
+              <line x1="258" y1="98" x2="244" y2="86" stroke="#EAF0F8" stroke-width="2.5" marker-end="url(#wv)"/>
+              <line x1="288" y1="92" x2="278" y2="77" stroke="#EAF0F8" stroke-width="2.5" marker-end="url(#wv)"/>
+              <line x1="272" y1="118" x2="259" y2="105" stroke="#EAF0F8" stroke-width="2.5" marker-end="url(#wv)"/>
+              <line x1="302" y1="114" x2="294" y2="98" stroke="#EAF0F8" stroke-width="2.5" marker-end="url(#wv)"/>
+              <line x1="260" y1="134" x2="250" y2="119" stroke="#EAF0F8" stroke-width="2.5" marker-end="url(#wv)"/>
+              <line x1="292" y1="136" x2="279" y2="124" stroke="#EAF0F8" stroke-width="2.5" marker-end="url(#wv)"/>
+            </g>
+            <defs>
+              <marker id="av" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5EE0D0"/></marker>
+              <marker id="bv" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A78BFA"/></marker>
+              <marker id="wv" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#EAF0F8"/></marker>
+            </defs>
+          </svg>
+          <div class="body">
+            <h3>Perturbation response clustering of protein motions</h3>
+            <p>An unsupervised machine learning framework that clusters protein movement vectors after a perturbation, to explore how proteins change shape.</p>
+            <p><strong style="color:var(--ink)">Project lead</strong></p>
+            <ul class="chips"><li>Unsupervised learning</li><li>K-means clustering</li><li>Louvain community detection</li><li>Protein dynamics</li></ul>
+            <div class="links">
+              <span style="color:var(--muted); font-weight:600">Paper coming soon</span>
+              <a href="https://github.com/FJalalypour/Protein_perturbation_Response_Clustering" target="_blank" rel="noopener noreferrer">View code on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <svg class="fig" viewBox="0 40 360 150" role="img" aria-label="Scientific papers go into an LLM agent, which outputs a structured data table">
+            <g font-family="DM Sans, Segoe UI, sans-serif" font-size="11" text-anchor="middle">
+              <rect x="30" y="80" width="62" height="78" rx="8" fill="rgba(255,255,255,0.06)" stroke="#9AA8BD" stroke-opacity="0.5"/>
+              <rect x="22" y="72" width="62" height="78" rx="8" fill="#1A263D" stroke="#9AA8BD" stroke-opacity="0.6"/>
+              <rect x="32" y="84" width="42" height="5" rx="2.5" fill="#EAF0F8" opacity="0.7"/>
+              <rect x="32" y="95" width="34" height="5" rx="2.5" fill="#EAF0F8" opacity="0.45"/>
+              <rect x="32" y="106" width="40" height="5" rx="2.5" fill="#EAF0F8" opacity="0.45"/>
+              <text x="54" y="138" fill="#EAF0F8">Papers</text>
+              <path d="M98 115 H130" stroke="#5EE0D0" stroke-width="2.5" marker-end="url(#ar3)"/>
+              <circle cx="180" cy="112" r="44" fill="rgba(94,224,208,0.14)" stroke="#5EE0D0"/>
+              <text x="180" y="110" fill="#EAF0F8" font-size="14" font-weight="700">LLM</text>
+              <text x="180" y="126" fill="#9AA8BD" font-size="9.5">agent</text>
+              <path d="M228 115 H258" stroke="#A78BFA" stroke-width="2.5" marker-end="url(#ar4)"/>
+              <g stroke="#A78BFA" fill="none">
+                <rect x="262" y="78" width="78" height="72" rx="8" fill="rgba(167,139,250,0.15)"/>
+                <line x1="262" y1="96" x2="340" y2="96"/><line x1="262" y1="114" x2="340" y2="114"/><line x1="262" y1="132" x2="340" y2="132"/>
+                <line x1="288" y1="78" x2="288" y2="150"/><line x1="314" y1="78" x2="314" y2="150"/>
+              </g>
+              <text x="301" y="168" fill="#EAF0F8">Database</text>
+            </g>
+            <defs>
+              <marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#5EE0D0"/></marker>
+              <marker id="ar4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#A78BFA"/></marker>
+            </defs>
+          </svg>
+          <div class="body">
+            <h3>Augmenting targeted protein degradation databases with agentic LLM extraction</h3>
+            <p>An LLM workflow that extracts degradation data from scientific papers to extend existing databases.</p>
+            <p><strong style="color:var(--ink)">Collaborator</strong></p>
+            <ul class="chips"><li>LLMs</li><li>Prompt engineering</li><li>Data extraction</li><li>Evaluation</li></ul>
+            <div class="links">
+              <a href="https://arxiv.org/pdf/2605.11221" target="_blank" rel="noopener noreferrer">Read more</a>
+              <a href="https://github.com/yaochenr/LLM-TPD-Extraction" target="_blank" rel="noopener noreferrer">View code on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <svg class="fig" viewBox="0 40 360 150" role="img" aria-label="Several overlapping shapes of one flexible molecule">
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+              <path d="M70 140 L110 100 L150 120 L190 85 L230 110 L270 75 L300 95" stroke="#5EE0D0" opacity="0.9"/>
+              <path d="M70 140 L112 112 L150 140 L192 110 L232 132 L272 104 L300 120" stroke="#A78BFA" opacity="0.8"/>
+              <path d="M70 140 L106 92 L148 98 L186 66 L228 82 L266 58 L300 70" stroke="#EAF0F8" opacity="0.35"/>
+            </g>
+            <circle cx="70" cy="140" r="16" fill="rgba(94,224,208,0.3)" stroke="#5EE0D0"/>
+            <circle cx="300" cy="95" r="14" fill="rgba(167,139,250,0.3)" stroke="#A78BFA"/>
+            <circle cx="300" cy="120" r="14" fill="rgba(167,139,250,0.18)" stroke="#A78BFA" stroke-opacity="0.6"/>
+            <circle cx="300" cy="70" r="14" fill="rgba(255,255,255,0.06)" stroke="#EAF0F8" stroke-opacity="0.4"/>
+          </svg>
+          <div class="body">
+            <h3>Chameleonicity beyond compactness: conformational persistence and passive permeability across 20 PROTACs</h3>
+            <p>Analyzed conformational ensembles and molecular dynamics simulations of 20 PROTACs to study how their changing shape relates to passive permeability.</p>
+            <p><strong style="color:var(--ink)">Project lead</strong></p>
+            <ul class="chips"><li>Python</li><li>Molecular descriptors</li><li>MD simulations</li><li>Clustering</li></ul>
+            <div class="links">
+              <a href="https://www.biorxiv.org/content/10.64898/2026.10.05.756765v2.full" target="_blank" rel="noopener noreferrer">Read more</a>
+              <a href="https://github.com/FJalalypour/protac-chameleonicity" target="_blank" rel="noopener noreferrer">View code on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+          <h2 id="certificates" style="scroll-margin-top:84px">Training and certificates</h2>
+      <div class="certs">
+      <ul class="courses">
+        <li class="ctile">
+          <div class="art"><div class="medal"><div class="face"><span class="abbr">GenAI</span></div></div></div>
+          <h3>Generative AI Modeling Summer School (GeMSS)</h3>
+          <p>Inria, FR · 2025 · poster presenter</p>
+        </li>
+        <li class="ctile">
+          <div class="art"><img src="data:image/webp;base64,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" alt="Coursera Specialization Certificate seal"></div>
+          <h3>Machine Learning Specialization</h3>
+          <p>DeepLearning.AI &amp; Stanford Online · Coursera · 2024</p>
+          <div class="link"><a href="https://coursera.org/share/028bc84caaebb8944d3a5003b13edda0" target="_blank" rel="noopener noreferrer">View certificate</a></div>
+        </li>
+        <li class="ctile">
+          <div class="art"><div class="medal kth"><div class="face"><span class="abbr">HPC</span><span class="org">KTH</span></div></div></div>
+          <h3>High-performance Computing for Computational Scientists</h3>
+          <p>KTH Royal Institute of Technology</p>
+          <div class="link"><a href="https://www.kth.se/student/kurser/kurs/FDD3260?l=en" target="_blank" rel="noopener noreferrer">View course</a></div>
+        </li>
+      </ul>
+      </div>
+      <h3 class="cert-group" style="margin-top:20px">Certificate documents</h3>
+      <div class="certdocs">
+        <a class="certdoc" href="files/chalmers-pedagogical-courses.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="images/certificates/chalmers-pedagogical-courses.jpg" alt="Certificate: University Teaching and Learning (CLS926) and Diversity and Inclusion (CLS930)" loading="eager"></span>
+          <span class="cap"><b>University Teaching and Learning (CLS926) and Diversity and Inclusion (CLS930)</b><span>Chalmers · Ladok record · 2026</span></span>
+        </a>
+        <a class="certdoc" href="files/womens-leadership-program.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="images/certificates/womens-leadership-program.jpg" alt="Certificate: Women's Leadership Program (40 hours)" loading="eager"></span>
+          <span class="cap"><b>Women's Leadership Program (40 hours)</b><span>Lauri.co and GENIE, Chalmers · 2025</span></span>
+        </a>
+        <a class="certdoc" href="files/enccs-python-scientific-computing.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="images/certificates/enccs-python-scientific-computing.jpg" alt="Certificate: Python for Scientific Computing" loading="eager"></span>
+          <span class="cap"><b>Python for Scientific Computing</b><span>ENCCS · Nov 2022</span></span>
+        </a>
+        <a class="certdoc" href="files/embo-integrative-modelling-course.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="images/certificates/embo-integrative-modelling-course.jpg" alt="Certificate: EMBO Practical Course: Integrative Modelling of Biomolecular Interactions" loading="eager"></span>
+          <span class="cap"><b>EMBO Practical Course: Integrative Modelling of Biomolecular Interactions</b><span>EMBO · May–Jun 2021</span></span>
+        </a>
+        <a class="certdoc" href="files/embl-phd-symposium.pdf" target="_blank" rel="noopener noreferrer">
+          <span class="thumb"><img src="images/certificates/embl-phd-symposium.jpg" alt="Certificate: 22nd EMBL PhD Symposium" loading="eager"></span>
+          <span class="cap"><b>22nd EMBL PhD Symposium</b><span>EMBL, DE (virtual) · Nov 2020</span></span>
+        </a>
+      </div>
+
+
+      <h2>Funding and awards</h2>
+      <ul class="compact">
+        <li><span class="when">Sep 2025</span><span><b>WASP travel grant</b> <span class="sep">·</span> research visits to RIKEN and the University of Osaka, JP</span></li>
+        <li><span class="when">Jun 2021</span><span><b>EMBO practical course grant</b> <span class="sep">·</span> Integrative Modelling of Biomolecular Interactions</span></li>
+        <li><span class="when">Mar 2021</span><span><b>HPC-Europa3 travel grant</b> <span class="sep">·</span> short talk, ES (held online)</span></li>
+        <li><span class="when">2020</span><span><b>HPC-Europa3 fully funded research visit</b> <span class="sep">·</span> PDC Center for High Performance Computing, KTH</span></li>
+        <li><span class="when">2017–2021</span><span><b>Merit-based full PhD scholarship</b> <span class="sep">·</span> Sabancı University</span></li>
+      </ul>
+
+      <h2>Scientific service</h2>
+      <ul class="entries">
+        <li class="entry"><span class="when">Ongoing</span><div><span class="kind">Editorial</span><h3>Review Editor</h3><div class="where">Journal of Chemical Theory and Computation · Frontiers in Molecular Biosciences · Frontiers in Big Data · Frontiers in Artificial Intelligence</div></div></li>
+        <li class="entry"><span class="when">2021–2024</span><div><span class="kind">Open-source software</span><h3>GROMACS Open-Source Software Team</h3><div class="where">KTH Royal Institute of Technology, SE</div><p>Forum administrator answering questions and supporting users in the GROMACS community; prepared tutorials and educational material; designed and ran user surveys and reported the results to the development team; tested new features before software releases.</p></div></li>
+        <li class="entry"><span class="when">2021–2024</span><div><span class="kind">Research infrastructure</span><h3>BioExcel Center of Excellence for Computational Biomolecular Research</h3><div class="where">KTH Royal Institute of Technology, SE</div><p>Dissemination, community engagement and outreach supporting BioExcel's mission to improve biomolecular simulation research and training across Europe, helping researchers adopt advanced computational tools.</p></div></li>
+      </ul>
+
+      <h2 id="publications" style="scroll-margin-top:84px">Publications</h2>
+      <p class="lede">Peer-reviewed articles, preprints and teaching materials. The full, up-to-date list is on <a href="https://scholar.google.com/citations?user=Fu0HhBEAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>
+
+      <div class="metrics" aria-label="Bibliometric summary">
+        <div class="metric"><b>11</b><span>peer-reviewed papers</span></div>
+        <div class="metric"><b>4</b><span>first-author papers</span></div>
+        <div class="metric"><b>64</b><span>citations (Web of Science)</span></div>
+        <div class="metric"><b>5</b><span>h-index</span></div>
+      </div>
+      <p class="note">Citation counts from Web of Science, autumn 2026.</p>
+
+      <div class="filters" role="group" aria-label="Filter publications" style="margin-top:22px">
+        <button type="button" id="f-all" data-f="all" aria-pressed="true">All</button>
+        <button type="button" id="f-first" data-f="first" aria-pressed="false">First author</button>
+        <button type="button" id="f-sim" data-f="sim" aria-pressed="false">Simulation &amp; AI</button>
+        <button type="button" id="f-bio" data-f="bio" aria-pressed="false">Molecular &amp; clinical biology</button>
+      </div>
+
+      <h2 style="margin-top:0">Preprints and other publications</h2>
+      <ol class="pubs" id="pubs2">
+        <li class="pub" data-k="sim first"><span class="yr">2026</span><div>
+          <div class="t">Chameleonicity beyond compactness: conformational persistence and passive permeability across 20 PROTAC ensembles</div>
+          <div class="a"><strong>F. Jalalypour</strong>, R. Mercado</div>
+          <div class="v">bioRxiv preprint, 2026</div>
+          <div class="meta"><span class="tag">First author</span><a href="https://www.biorxiv.org/content/10.64898/2026.10.05.756765v2.full" target="_blank" rel="noopener noreferrer">bioRxiv</a><a href="https://github.com/FJalalypour/protac-chameleonicity" target="_blank" rel="noopener noreferrer">Code</a></div>
+        </div></li>
+        <li class="pub" data-k="sim"><span class="yr">2026</span><div>
+          <div class="t">Beyond manual curation: augmenting targeted protein degradation databases via agentic literature extraction workflows</div>
+          <div class="a">Y. Rao, <strong>F. Jalalypour</strong>, N. M. Krishnan, R. Mercado</div>
+          <div class="v">arXiv preprint</div>
+          <div class="meta"><span class="tag v2">Biological domain expert</span><a href="https://arxiv.org/pdf/2605.11221" target="_blank" rel="noopener noreferrer">arXiv</a><a href="https://github.com/yaochenr/LLM-TPD-Extraction" target="_blank" rel="noopener noreferrer">Code</a><a href="https://scholar.google.com/scholar?q=%22Beyond+manual+curation%3A+augmenting+targeted+protein+degradation+databases+via+agentic+literature+extraction+workflows%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="sim"><span class="yr">2026</span><div>
+          <div class="t">The GROMACS tutorial suite: from basics to advanced applications</div>
+          <div class="a">C. Bergh, M. Abraham, C. Alleva, <strong>F. Jalalypour</strong>, M. Majdolhosseini, M. Pellegrino, T. Shugaeva, A. Villa</div>
+          <div class="v">In progress, GROMACS team</div>
+          <div class="meta"><a href="https://tutorials.gromacs.org/" target="_blank" rel="noopener noreferrer">GROMACS tutorials</a></div>
+        </div></li>
+        <li class="pub" data-k="sim first"><span class="yr">2024</span><div>
+          <div class="t">A beginner's guide to perform molecular dynamics simulation of a membrane protein using GROMACS</div>
+          <div class="a"><strong>F. Jalalypour</strong>, M. Majdolhosseini, A. Villa</div>
+          <div class="v">Official GROMACS tutorial</div>
+          <div class="meta"><span class="tag">First author</span><a href="https://tutorials.gromacs.org/docs/membrane-protein.html" target="_blank" rel="noopener noreferrer">Tutorial</a><a href="https://scholar.google.com/scholar?q=%22A+beginner%27s+guide+to+perform+molecular+dynamics+simulation+of+a+membrane+protein+using+GROMACS%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+      </ol>
+
+      <h2>Journal articles</h2>
+      <ol class="pubs" id="pubs">
+        <li class="pub" data-k="sim"><span class="yr">2025</span><div>
+          <div class="t">Predicting PROTAC-mediated ternary complexes with AlphaFold3 and Boltz-1</div>
+          <div class="a">N. Dunlop, F. Erazo, <strong>F. Jalalypour</strong>, R. Mercado</div>
+          <div class="v">Digital Discovery</div>
+          <div class="meta"><span class="tag">Supervisor · designed study, ran simulations</span><span class="cites">12 citations</span><a href="https://pubs.rsc.org/dd/article/4/12/3782/889147/Predicting-PROTAC-mediated-ternary-complexes-with" target="_blank" rel="noopener noreferrer">Paper</a><a href="https://github.com/NilsDunlop/PROTACFold" target="_blank" rel="noopener noreferrer">Code</a><a href="https://scholar.google.com/scholar?q=%22Predicting+PROTAC-mediated+ternary+complexes+with+AlphaFold3+and+Boltz-1%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="bio"><span class="yr">2025</span><div>
+          <div class="t">Whole exome sequencing identified a stop-gained mutation in DYSF gene associated with dysferlinopathy in an Iranian family</div>
+          <div class="a">S. Baghshomali, A. Jebelli, M. Kazemzadeh, <strong>F. Jalalypour</strong>, M. Yazdchi, A. A. Mokhtarzadeh, L. Emrahi</div>
+          <div class="v">International Journal of Genomics</div>
+          <div class="meta"><span class="cites">1 citation</span><a href="https://scholar.google.com/scholar?q=%22Whole+exome+sequencing+identified+a+stop-gained+mutation+in+DYSF+gene+associated+with+dysferlinopathy+in+an+Iranian+family%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="sim first"><span class="yr">2024</span><div>
+          <div class="t">Allosteric cholesterol site in glycine receptors characterized through molecular simulations</div>
+          <div class="a"><strong>F. Jalalypour</strong>, R. J. Howard, E. Lindahl</div>
+          <div class="v">The Journal of Physical Chemistry B</div>
+          <div class="meta"><span class="tag">First author</span><span class="cites">4 citations</span><a href="https://scholar.google.com/scholar?q=%22Allosteric+cholesterol+site+in+glycine+receptors+characterized+through+molecular+simulations%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="sim"><span class="yr">2023</span><div>
+          <div class="t">Conformational multiplicity of bacterial ferric binding protein revealed by small angle X-ray scattering and molecular dynamics calculations</div>
+          <div class="a">G. Liu, E. Ekmen, <strong>F. Jalalypour</strong>, H. D. T. Mertens, C. M. Jeffries, D. Svergun, A. R. Atilgan, C. Atilgan, Z. Sayers</div>
+          <div class="v">The Journal of Chemical Physics</div>
+          <div class="meta"><span class="cites">6 citations</span><a href="https://scholar.google.com/scholar?q=%22Conformational+multiplicity+of+bacterial+ferric+binding+protein+revealed+by+small+angle+X-ray+scattering+and+molecular+dynamics+calculations%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="sim"><span class="yr">2022</span><div>
+          <div class="t">Inhibition of mutant RAS-RAF interaction by mimicking structural and dynamic properties of phosphorylated RAS</div>
+          <div class="a">M. Ilter, R. Kasmer, <strong>F. Jalalypour</strong>, C. Atilgan, O. Topcu, N. Karakas, O. Sensoy</div>
+          <div class="v">eLife</div>
+          <div class="meta"><span class="cites">6 citations</span><a href="https://scholar.google.com/scholar?q=%22Inhibition+of+mutant+RAS-RAF+interaction+by+mimicking+structural+and+dynamic+properties+of+phosphorylated+RAS%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="bio"><span class="yr">2021</span><div>
+          <div class="t">Compound heterozygous p.Arg949Trp and p.Gly970Ala mutations deteriorated the function of PEX1p: a study on PEX1 in a patient with Zellweger syndrome</div>
+          <div class="a">M. Alamatsaz, <strong>F. Jalalypour</strong>, M.-S. Hashemi, Y. Shafeghati, M. H. Nasr-Esfahani, K. Ghaedi</div>
+          <div class="v">Journal of Cellular Biochemistry</div>
+          <div class="meta"><span class="cites">3 citations</span><a href="https://scholar.google.com/scholar?q=%22Compound+heterozygous+p.Arg949Trp+and+p.Gly970Ala+mutations+deteriorated+the+function+of+PEX1p%3A+a+study+on+PEX1+in+a+patient+with+Zellweger+syndrome%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="sim"><span class="yr">2020</span><div>
+          <div class="t">A coarse-grained methodology identifies intrinsic mechanisms that dissociate interacting protein pairs</div>
+          <div class="a">H. Abdizadeh, <strong>F. Jalalypour</strong>, A. R. Atilgan, C. Atilgan</div>
+          <div class="v">Frontiers in Molecular Biosciences</div>
+          <div class="meta"><span class="cites">1 citation</span><a href="https://scholar.google.com/scholar?q=%22A+coarse-grained+methodology+identifies+intrinsic+mechanisms+that+dissociate+interacting+protein+pairs%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="sim first"><span class="yr">2020</span><div>
+          <div class="t">Perturb–Scan–Pull: a novel method facilitating conformational transitions in proteins</div>
+          <div class="a"><strong>F. Jalalypour</strong>, O. Sensoy, C. Atilgan</div>
+          <div class="v">Journal of Chemical Theory and Computation</div>
+          <div class="meta"><span class="tag">First author</span><span class="cites">19 citations</span><a href="https://scholar.google.com/scholar?q=%22Perturb-Scan-Pull%3A+a+novel+method+facilitating+conformational+transitions+in+proteins%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="bio"><span class="yr">2018</span><div>
+          <div class="t">The effect of conjugated linoleic acid (CLA) on inflammatory factors in non-alcoholic fatty liver disease (NAFLD): a randomized controlled clinical trial</div>
+          <div class="a">R. Abedi, S.-R. Aref-Hosseini, M. Khoshbaten, M. Ebrahimi-Mameghani, H. Jamali Laleh, <strong>F. Jalalypour</strong>, B. Kabir Mamdouh</div>
+          <div class="v">Progress in Nutrition</div>
+          <div class="meta"><span class="cites">15 citations (Google Scholar)</span><a href="https://scholar.google.com/scholar?q=%22The+effect+of+conjugated+linoleic+acid+%28CLA%29+on+inflammatory+factors+in+non-alcoholic+fatty+liver+disease+%28NAFLD%29%3A+a+randomized+controlled+clinical+trial%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="bio first"><span class="yr">2016</span><div>
+          <div class="t">Comparative evaluation of RUT, PCR and ELISA tests for detection of infection with cytotoxigenic H. pylori</div>
+          <div class="a"><strong>F. Jalalypour</strong>, S. Farajnia, M. H. Somi, et al.</div>
+          <div class="v">Advanced Pharmaceutical Bulletin</div>
+          <div class="meta"><span class="tag">First author</span><span class="cites">12 citations</span><a href="https://scholar.google.com/scholar?q=%22Comparative+evaluation+of+RUT%2C+PCR+and+ELISA+tests+for+detection+of+infection+with+cytotoxigenic+H.+pylori%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+        <li class="pub" data-k="bio first"><span class="yr">2014</span><div>
+          <div class="t">Cloning and expression of the variable regions of anti-EGFR monoclonal antibody in E. coli for production of a single chain antibody</div>
+          <div class="a"><strong>F. Jalalypour</strong>, S. Farajnia, F. Mahmoudi, B. Baradaran, D. Farajzadeh, L. Rahbarnia, J. Majidi</div>
+          <div class="v">Iranian Journal of Biotechnology</div>
+          <div class="meta"><span class="tag">First author</span><a href="https://scholar.google.com/scholar?q=%22Cloning+and+expression+of+the+variable+regions+of+anti-EGFR+monoclonal+antibody+in+E.+coli+for+production+of+a+single+chain+antibody%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+        </div></li>
+      </ol>
+      <p class="note" id="nomatch" hidden>No publications match this filter.</p>
+
+      <h2 id="talks" style="scroll-margin-top:84px">Conference presentations: talks and posters</h2>
+      <ul class="entries">
+        <li class="entry"><span class="when">2025</span><div><span class="kind">Invited talk</span><h3>Generative AI for protein complex structure prediction</h3><div class="where">RIKEN and the University of Osaka, JP</div></div></li>
+        <li class="entry"><span class="when">2025</span><div><span class="kind">Invited talk</span><h3>In silico investigation of targeted protein degradation via PROTACs (coarse-grained and all-atom simulations)</h3><div class="where">École normale supérieure de Lyon, FR</div></div></li>
+        <li class="entry"><span class="when">2025</span><div><span class="kind">Poster &amp; short talk</span><h3>Generative AI for protein complex structure prediction</h3><div class="where">EMBO Computational Structural Biology Workshop, EMBL Advanced Training Centre, DE</div></div></li>
+        <li class="entry"><span class="when">2025</span><div><span class="kind">Poster</span><h3>A machine learning perturbation–clustering framework for conformational space exploration</h3><div class="where">GeMSS Generative AI Modeling School, Inria, FR</div></div></li>
+        <li class="entry"><span class="when">2025</span><div><span class="kind">Poster</span><h3>Enhancing PROTAC ternary complex prediction with ligand information in AlphaFold3</h3><div class="where">2nd Nordic Conference on Computational Chemistry, AstraZeneca, SE</div></div></li>
+        <li class="entry"><span class="when">2023</span><div><span class="kind">Poster</span><h3>An allosteric cholesterol site in glycine receptors defined through molecular simulations</h3><div class="where">European Biophysical Societies' Association (EBSA) Congress, SE · Eur. Biophys. J. 52 (Suppl 1), S136</div></div></li>
+        <li class="entry"><span class="when">2023</span><div><span class="kind">Workshop trainer</span><h3>GROMACS molecular dynamics simulation</h3><div class="where">BioExcel Center of Excellence for Computational Biomolecular Research, KTH Royal Institute of Technology, SE</div></div></li>
+        <li class="entry"><span class="when">2022</span><div><span class="kind">Poster</span><h3>Perturbation response clustering (PRC) method</h3><div class="where">1st Nordic Conference on Computational Chemistry, AstraZeneca, SE</div></div></li>
+        <li class="entry"><span class="when">2022</span><div><span class="kind">Poster</span><h3>Increased ionic strength triggers multiple conformations in both apo and holo forms of bacterial ferric binding protein</h3><div class="where">Biophysical Society Annual Meeting, US · Biophys. J. 122 (3), 444a–445a</div></div></li>
+        <li class="entry"><span class="when">2021</span><div><span class="kind">Virtual poster</span><h3>A novel method to study conformational change of proteins</h3><div class="where">EMBO Computational Structural Biology Workshop, EMBL, DE (online)</div></div></li>
+      </ul>
+
+    </section>
+
+
+  </main>
+</div>
+
+<footer><div class="in"><span>© 2026 Farzaneh Jalalypour · Gothenburg, SE</span><span>Layout inspired by <a href="https://academicpages.github.io/" target="_blank" rel="noopener noreferrer">Academic Pages</a></span></div></footer>
+
+<script>
+(function () {
+  const pages = [...document.querySelectorAll('[data-page]')];
+  const links = [...document.querySelectorAll('#nav a')];
+  // About, Projects and Publications share the home view; other tabs show on their own
+  const home = ['about'];
+  const groups = { about: home };
+  function show(want) {
+    const id = typeof want === 'string' ? want : (location.hash || '#about').slice(1);
+    let target = pages.find(p => p.id === id);
+    const anchor = target ? null : document.getElementById(id);   // e.g. #certificates inside the home view
+    if (!target) target = anchor ? anchor.closest('[data-page]') : pages[0];
+    const visible = groups[target.id] || [target.id];
+    pages.forEach(p => { p.hidden = !visible.includes(p.id); });
+    links.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + id ? 'page' : 'false'));
+    if (anchor) anchor.scrollIntoView({ block: 'start' });
+        else window.scrollTo(0, 0);
+  }
+  links.concat([...document.querySelectorAll('a.site-title')]).forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    const h = a.getAttribute('href');
+    try { history.pushState(null, '', h); } catch (_) {}
+    show(h.slice(1));
+  }));
+  window.addEventListener('hashchange', show);
+  window.addEventListener('popstate', show);
+  show();
+
+  const btns = [...document.querySelectorAll('.filters button')];
+  const items = [...document.querySelectorAll('.pub')];
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const f = b.dataset.f; let n = 0;
+    items.forEach(li => { const on = f === 'all' || li.dataset.k.split(' ').includes(f); li.hidden = !on; if (on) n++; });
+    document.querySelectorAll('.pubs').forEach(ol => {
+      const h = ol.previousElementSibling; const any = [...ol.children].some(li => !li.hidden);
+      ol.hidden = !any; if (h && h.tagName === 'H2') h.hidden = !any;
+    });
+    document.getElementById('nomatch').hidden = n > 0;
+  }));
+})();
+</script>
