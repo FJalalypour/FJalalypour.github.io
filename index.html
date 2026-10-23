@@ -241,6 +241,16 @@
   .contact a:hover { color: var(--teal); border-bottom-color: var(--teal); }
   .contact .sep { color: var(--muted); margin: 0 8px; }
   @media (max-width: 520px) { .contact { grid-template-columns: 1fr; gap: 0; } .contact dd { margin-bottom: 6px; } }
+  .skillset { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 900px) { .skillset { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .skillset { grid-template-columns: 1fr; } }
+  .skill-group { min-width: 0; padding: 12px 14px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  .skill-group h3 { font-size: 0.9rem; margin: 0 0 8px; color: var(--teal); }
+  .skill-group .chips li { color: var(--ink); background: var(--bg); }
+  .skilllist { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 8px 20px; margin: 0; font-size: 0.93rem; line-height: 1.55; }
+  .skilllist dt { font-weight: 600; color: var(--ink); }
+  .skilllist dd { margin: 0; min-width: 0; color: var(--ink); }
+  @media (max-width: 640px) { .skilllist { grid-template-columns: 1fr; gap: 0; } .skilllist dd { margin-bottom: 10px; } }
   footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.85rem; }
   footer .in { max-width: 1180px; margin: 0 auto; padding: 18px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -251,6 +261,7 @@
     <a class="site-title" href="#about" aria-label="Farzaneh Jalalypour, home">FJ<span>.</span></a>
     <ul class="nav" id="nav">
       <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#teaching">Teaching</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#certificates">Training</a></li>
@@ -335,6 +346,16 @@
           </div>
         </li>
       </ol></div>
+
+      <h2 id="skills" style="scroll-margin-top:84px">Skills</h2>
+      <dl class="skilllist">
+        <dt>Machine learning and AI</dt><dd>MATLAB and Python; TensorFlow, PyTorch, scikit-learn and RDKit; supervised learning, clustering, community detection, deep learning and transfer learning; LLMs and generative AI, including RAG, agentic workflows, fine-tuning and embeddings; protein structure prediction with AlphaFold3 and Boltz-1; recommender systems</dd>
+        <dt>Molecular modeling and simulation</dt><dd>Drug molecules; soluble and membrane protein simulation; GROMACS, NAMD and AMBER; all-atom and coarse-grained (Martini) simulation; enhanced sampling; perturbation response scanning and network analysis; molecular modeling libraries</dd>
+        <dt>Wet lab</dt><dd>Gene cloning and protein expression; antibody engineering; RNA and DNA extraction and purification; PCR and RT-PCR; plasmid transformation; SDS-PAGE, Western blotting, ELISA, immunoprecipitation and protein purification; mammalian cell and tissue culture; spectrophotometry and optical microscopy; microbiological techniques (bacterial culture, staining, antibiograms); fluorescence microscopy and imaging analysis</dd>
+        <dt>Graphic design</dt><dd>Procreate, Vectornator, Adobe Photoshop</dd>
+        <dt>Other tools</dt><dd>Git/GitLab, Databricks, Microsoft Azure, Canvas, Jupyter, SQL, HPC and Linux</dd>
+        <dt>Languages</dt><dd>English (fluent), Turkish, Swedish (beginner)</dd>
+      </dl>
 
       <h2>Supervision experience</h2>
       <ul class="entries">
@@ -681,13 +702,12 @@
           <div class="t">The GROMACS tutorial suite: from basics to advanced applications</div>
           <div class="a">C. Bergh, M. Abraham, C. Alleva, <strong>F. Jalalypour</strong>, M. Majdolhosseini, M. Pellegrino, T. Shugaeva, A. Villa</div>
           <div class="v">In progress, GROMACS team</div>
-          <div class="meta"><a href="https://tutorials.gromacs.org/" target="_blank" rel="noopener noreferrer">GROMACS tutorials</a></div>
         </div></li>
         <li class="pub" data-k="sim first"><span class="yr">2024</span><div>
           <div class="t">A beginner's guide to perform molecular dynamics simulation of a membrane protein using GROMACS</div>
           <div class="a"><strong>F. Jalalypour</strong>, M. Majdolhosseini, A. Villa</div>
           <div class="v">Official GROMACS tutorial</div>
-          <div class="meta"><span class="tag">First author</span><a href="https://tutorials.gromacs.org/docs/membrane-protein.html" target="_blank" rel="noopener noreferrer">Tutorial</a><a href="https://scholar.google.com/scholar?q=%22A+beginner%27s+guide+to+perform+molecular+dynamics+simulation+of+a+membrane+protein+using+GROMACS%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+          <div class="meta"><span class="tag">First author</span><a href="https://tutorials.gromacs.org/docs/membrane-protein.html" target="_blank" rel="noopener noreferrer">Tutorial</a><a href="https://tutorials.gromacs.org/" target="_blank" rel="noopener noreferrer">GROMACS tutorials</a><a href="https://scholar.google.com/scholar?q=%22A+beginner%27s+guide+to+perform+molecular+dynamics+simulation+of+a+membrane+protein+using+GROMACS%22" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
         </div></li>
       </ol>
 
